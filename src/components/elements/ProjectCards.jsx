@@ -11,7 +11,7 @@ import { HashLink } from "react-router-hash-link";
 
 const ProjectCards = () => {
   return (
-    <div className="mt-12 p-4">
+    <div className="mt-12 p-4 shadow-xl rounded-xl">
       <p className=" text-2xl font-bold font-serif text-slate-600">
         Popular Projects
       </p>

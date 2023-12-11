@@ -4,7 +4,7 @@ import { HashLink } from "react-router-hash-link";
 
 const InfoCard = () => {
   return (
-    <div className="h-fit w-full p-4 shadow-xl rounded-xl mt-8 flex justify-left gap-8">
+    <div className="h-fit w-full p-4 shadow-xl rounded-xl mt-16 flex justify-left gap-8">
       <div className="w-[50%]">
         <img className=" rounded-md" src={info} alt="" />
       </div>

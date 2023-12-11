@@ -2,7 +2,7 @@ import React from "react";
 
 const Search = () => {
   return (
-    <div className="pt-12 p-4">
+    <div className="pt-12 p-4 mt-12">
       <div>
         <p className=" font-bold text-4xl text-slate-600 font-serif">
           Search projects of your choice

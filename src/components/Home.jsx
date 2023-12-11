@@ -4,6 +4,7 @@ import Search from "./elements/Search";
 import ProjectCards from "./elements/ProjectCards";
 import InfoCard from "./elements/InfoCard";
 import CardThree from "./elements/CardThree";
+import Upcoming from "./elements/Upcoming";
 
 const Home = () => {
   return (
@@ -12,7 +13,7 @@ const Home = () => {
         <div className=" p-4 flex justify-center items-center  w-[50%]">
           <div className="flex flex-col">
             <p className=" text-4xl font-serif leading-relaxed font-bold text-slate-600">
-              Empower Your Ideas, <br /> Elevate Your Projects: Seamless Uploading,<br />
+              Empower Your Ideas, <br /> Elevate Your Projects, <br /> Seamless Uploading,<br />
               Limitless Possibilities!
             </p>
             <p className=" text-xl tracking-wide select-none mt-4">
@@ -42,6 +43,7 @@ const Home = () => {
       <ProjectCards/>
       <InfoCard/>
       <CardThree/>
+      <Upcoming/>
     </div>
   );
 };
