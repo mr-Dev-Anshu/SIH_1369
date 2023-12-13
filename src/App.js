@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Welcome from "./components/auth/Welcome";
-import UploadCard from "./components/elements/UploadCard";
+import UploadCard from "./Pages/UploadCard";
 
 function App() {
   return (
