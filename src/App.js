@@ -7,6 +7,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Welcome from "./components/auth/Welcome";
 import UploadCard from "./Pages/UploadCard";
+import Dashboard from "./Pages/Dashboard";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/upload" element={<UploadCard/>} />
+          <Route path="/dashboard" element={<Dashboard/>}/>
         </Routes>
         <Footer />
       </Router>

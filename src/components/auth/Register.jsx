@@ -20,7 +20,7 @@ const Register = () => {
             placeholder="Password"
           />
         </div>
-        <HashLink>
+        <HashLink to={"/dashboard"}>
           <button className="h-12 w-56 shadow-inner shadow-blue-800 rounded-xl text-xl font-semibold mt-8">Login</button>
         </HashLink>
       </div>
