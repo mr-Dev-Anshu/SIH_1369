@@ -8,6 +8,8 @@ import Register from "./auth/Register";
 import Welcome from "./auth/Welcome";
 import UploadCard from "./Pages/UploadCard";
 import Dashboard from "./Pages/Dashboard";
+import MentorPage from "./components/elements/MentorPage";
+import ProjectDisplay from "./components/elements/ProjectDisplay";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/upload" element={<UploadCard/>} />
           <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/mentor" element={<MentorPage/>}/>
+          <Route path="/projectdisplay" element={<ProjectDisplay/>}/>
         </Routes>
         <Footer />
       </Router>

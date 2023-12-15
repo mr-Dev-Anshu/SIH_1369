@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import logo from "../components/assets/logo.png";
 import { HashLink } from "react-router-hash-link";
 import { Link } from "react-router-dom";
-import { createUserWithEmailAndPassword , onAuthStateChanged} from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { auth } from "../firebase-config";
+import toast, { Toaster } from "react-hot-toast";
+
+// This is register page. Named mistakenly to Login
 
 const Login = () => {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -13,7 +19,10 @@ const Login = () => {
   const [passMessage, setPassMessage] = useState(false);
   const [errror, setErrror] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [user,setUser] = useState({});
+  const [user, setUser] = useState({});
+
+  // Toast
+  const notify = () => toast.success("You are registered in successfully !");
 
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
@@ -26,7 +35,7 @@ const Login = () => {
   //     console.log(registerPassword);
   //  })
   const register = async () => {
-    if (confirmPassword != registerPassword) {
+    if (confirmPassword !== registerPassword) {
       setPassMach(true);
       return;
     } else {
@@ -47,7 +56,8 @@ const Login = () => {
         registerPassword
       );
       setErrorMessage(false);
-      console.log(user);
+      notify();
+      // console.log(user);
     } catch (error) {
       setErrror(true);
       setErrorMessage(error.message);
@@ -61,6 +71,7 @@ const Login = () => {
           <img className="h-12" src={logo} alt="" />
           <div className="p-4 mt-4 w-full flex flex-col gap-8 font-medium">
             <input
+              required
               className=" border-none outline-none shadow-inner shadow-red-700 rounded-xl h-12 w-full p-4 "
               type="email"
               placeholder="Email Address"
@@ -69,6 +80,7 @@ const Login = () => {
               }}
             />
             <input
+              required
               className="border-none outline-none shadow-inner shadow-red-700 rounded-xl h-12 w-full p-4 "
               type="password"
               placeholder="Password"
@@ -82,6 +94,7 @@ const Login = () => {
               </span>
             ) : null}
             <input
+              required
               className="border-none outline-none shadow-inner shadow-red-700 rounded-xl h-12 w-full p-4 "
               type="password"
               placeholder="Confirm Password"
@@ -103,18 +116,19 @@ const Login = () => {
             >
               Sign Up
             </button>
+            <Toaster />
           </HashLink>
         </div>
       </form>
       <div className="text-red-500 text-xl font-bold ">
         {errror ? <div>{errorMessage}</div> : null}
       </div>
-      <div>{ `User login with ${user.email}`}</div>
-      <div className="mt-5 shadow-2xl  ">
-        <span className="text-xl ">Have an Account {"  "} </span>
+      <div className="mt-4">{`User logged in as ${user.email}`}</div>
+      <div className="mt-5 shadow-2xl outline outline-slate-300 text-slate-500 w-[30%] rounded-xl p-2 flex justify-center items-center gap-4">
+        <span className="text-xl "> Already have an Account? {"  "} </span>
         <Link to={"/login"}>
           {" "}
-          <span className="text-xl text-blue-600  font-bold   ">log In </span>
+          <span className="text-xl text-blue-600  font-bold   ">Log In </span>
         </Link>
       </div>
     </div>

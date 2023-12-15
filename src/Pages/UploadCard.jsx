@@ -1,5 +1,6 @@
 import React from "react";
-import { useState , useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { useState, useEffect } from "react";
 import ProjectDataService from "../services/ProjectServices";
 import { storage } from "../firebase-config";
 import { ref, uploadBytes } from "firebase/storage";
@@ -11,6 +12,11 @@ export default function Upload_Project() {
   const [img3, setImg3] = useState(null);
   const [url, setUrl] = useState("");
   const [formData, setFormData] = useState({});
+
+  // Toaster
+  const notify = () => toast.success("Operation Successful !");
+  const notifyError = () => toast.error("Operation Failed !");
+
   function handleChange(e) {
     setFormData({
       ...formData,
@@ -18,40 +24,44 @@ export default function Upload_Project() {
     });
     setUrl(e.target.value);
   }
-  useEffect(()=>{
-          // console.log(formData.team_name);
-          console.log(formData)
-  } , [formData.mentorEmail])
-   const uploadImage = async (e)=>{
-        if(img1==null || img2==null || img3==null ){
-           alert("Upload the Images !!");
-           return ;
-        }else{
-          const folder = formData.team_name;
-           const img1Ref = ref(storage,`${folder}/${img1.name + v4()}`);
-           const img2Ref = ref(storage,`${folder}/${img2.name + v4()}`);
-           const img3Ref = ref(storage,`${folder}/${img3.name + v4()}`);
-           try {
-              await uploadBytes(img1Ref , img1);
-              await uploadBytes(img2Ref , img2);
-              await uploadBytes(img3Ref , img3);
-              console.log("Images uploaded successfully ");
-           } catch (error) {
-                console.log(error+"Not uploaded !!!");
-           }
-        }
-   }
+
+  useEffect(() => {
+    // console.log(formData.team_name);
+    console.log(formData);
+  }, [formData.mentorEmail]);
+
+  const uploadImage = async (e) => {
+    if (img1 == null || img2 == null || img3 == null) {
+      alert("Upload the Images !!");
+      return;
+    } else {
+      const folder = formData.team_name;
+      const img1Ref = ref(storage, `${folder}/${img1.name + v4()}`);
+      const img2Ref = ref(storage, `${folder}/${img2.name + v4()}`);
+      const img3Ref = ref(storage, `${folder}/${img3.name + v4()}`);
+      try {
+        await uploadBytes(img1Ref, img1);
+        await uploadBytes(img2Ref, img2);
+        await uploadBytes(img3Ref, img3);
+        notify();
+      } catch (error) {
+        console.log(error + "Not uploaded !!!");
+        notifyError();
+      }
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newRecord = formData;
     // console.log(newRecord);
     try {
       await ProjectDataService.addProject(newRecord);
-      console.log("Project Added!!");
+      notify();
     } catch (e) {
       console.log("project  Didn't added !!!");
+      notifyError();
     }
-   
   };
   return (
     <>
@@ -108,7 +118,6 @@ export default function Upload_Project() {
                 cols="30"
                 rows="20"
                 placeholder="Project Description (minimum 500 words.)"
-                minLength={500}
                 onChange={handleChange}
               ></textarea>
 
@@ -176,15 +185,16 @@ export default function Upload_Project() {
               >
                 Submit
               </button>
+              <Toaster />
             </div>
           </div>
         </div>
       </form>
 
-      <div className="flex justify-center mt-12">
-        <div className="w-[30%]  ">
-          <div className="mt-4">
-            <label className="text-xl font-bold" htmlFor="documents  ">
+      <div className="flex justify-center mt-12 ml-40 mr-40">
+        <div className="w-full  ">
+          <div className="mt-4 p-4 rounded-xl shadow-xl flex flex-col gap-4">
+            <label className="text-xl font-semibold" htmlFor="documents  ">
               Upload project related documents [ Merge all documents in one pdf
               file ]
             </label>
@@ -200,9 +210,9 @@ export default function Upload_Project() {
               Upload
             </button>
           </div>
-          <div className="mt-4">
+          <div className="mt-4 p-4 rounded-xl shadow-xl flex justify-center flex-col gap-4">
             <label htmlFor="documents">
-              <p className="text-xl font-bold ">
+              <p className="text-xl font-semibold ">
                 Upload project related Images ["image should be less than
                 500kb"]{" "}
               </p>
@@ -212,33 +222,33 @@ export default function Upload_Project() {
               className="border p-3 rounded-lg  placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
               type="file"
               id="images"
-              onChange={(event)=>{
-                   setImg1(event.target.files[0])
+              onChange={(event) => {
+                setImg1(event.target.files[0]);
               }}
             />
             <input
               className="border p-3 rounded-lg  placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
               type="file"
               id="images"
-              onChange={(event)=>{
-                  setImg2(event.target.files[0])
+              onChange={(event) => {
+                setImg2(event.target.files[0]);
               }}
             />
+            <input
+              className="border p-3 rounded-lg  placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
+              type="file"
+              id="images"
+              onChange={(event) => {
+                setImg3(event.target.files[0]);
+              }}
+            />
+            <button
+              onClick={uploadImage}
+              className="outline rounded-xl outline-slate-200 hover:bg-blue-700 hover:text-white uppercase font-bold text-slate-500 text-xl mb-6 transition-all duration-300 py-2 px-3 mt-2"
+            >
+              Upload
+            </button>
           </div>
-          <input
-            className="border p-3 rounded-lg  placeholder-black placeholder-opacity-25 border-b border-gray-500 focus:outline-none w-full"
-            type="file"
-            id="images"
-            onChange={(event) => {
-              setImg3(event.target.files[0]);
-            }}
-          />
-          <button
-            onClick={uploadImage}
-            className="outline rounded-xl outline-slate-200 hover:bg-blue-700 hover:text-white uppercase font-bold text-slate-500 text-xl mb-6 transition-all duration-300 py-2 px-3 mt-2"
-          >
-            Upload
-          </button>
         </div>
       </div>
     </>

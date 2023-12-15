@@ -16,7 +16,7 @@ const ProjectCards = () => {
       </p>
       <div className=" flex flex-col w-full gap-12 p-4 mt-8">
         <div className="w-full flex justify-between">
-          <HashLink to={"/computer"}>
+          <HashLink to={"/projectdisplay"}>
             <div className="h-56 w-56 outline rounded-md outline-slate-400 group relative">
               <img src={i1} alt="" />
               <div className="absolute h-full w-full rounded-md bg-black/30 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-200">
