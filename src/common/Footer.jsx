@@ -1,5 +1,6 @@
 import React from "react";
-import logo from "../assets/logo.png";
+// import logo from "../";
+import logo from "../components/assets/logo.png"
 import { HashLink } from "react-router-hash-link";
 import {
   FacebookIcon,

@@ -1,5 +1,6 @@
 import { db } from '../firebase-config';
 
+
 // import remaining = getDoc, updateDoc, deletDoc, doc
 
 import {
@@ -7,9 +8,7 @@ import {
   getDocs,
   addDoc,
  } from "firebase/firestore";
-
 const ProjectCollectionRef = collection(db, "Projects");
-
 class ProjectDataService {
   addProject = (newProject) => {
     return addDoc(ProjectCollectionRef, newProject);
@@ -18,5 +17,4 @@ class ProjectDataService {
     return getDocs(ProjectCollectionRef);
   };
 }
-
 export default new ProjectDataService();
