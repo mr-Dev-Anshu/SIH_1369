@@ -8,7 +8,6 @@ import i6 from "../assets/physics.jpg";
 import i7 from "../assets/chemistry.jpg";
 import { ChevronRight, FileUp } from "lucide-react";
 import { HashLink } from "react-router-hash-link";
-
 const ProjectCards = () => {
   return (
     <div className="mt-12 p-4 shadow-xl rounded-xl">

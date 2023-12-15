@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/common/Header";
-import Footer from "./components/common/Footer";
+import Header from "./common/Header";
+import Footer from "./common/Footer";
 import Home from "./components/Home";
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
-import Welcome from "./components/auth/Welcome";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
+import Welcome from "./auth/Welcome";
 import UploadCard from "./Pages/UploadCard";
 import Dashboard from "./Pages/Dashboard";
 

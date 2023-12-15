@@ -1,6 +1,7 @@
 import React from 'react'
 import { HashLink } from 'react-router-hash-link'
-import logo from "../assets/logo.png";
+import logo from "../components/assets/logo.png";
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   return (
@@ -24,6 +25,10 @@ const Register = () => {
           <button className="h-12 w-56 shadow-inner shadow-blue-800 rounded-xl text-xl font-semibold mt-8">Login</button>
         </HashLink>
       </div>
+      <div className="mt-5 shadow-2xl  ">
+           <span className="text-xl "> Don't have an Account {"  "} </span> 
+          <Link to={"/register"}> <span  className="text-xl text-blue-600 font-bold ">Sign Up  </span></Link>
+        </div>
     </div>
   )
 }

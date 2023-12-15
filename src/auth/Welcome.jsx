@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/logo.png";
+import logo from "../components/assets/logo.png";
 import { HashLink } from "react-router-hash-link";
 
 const Welcome = () => {
@@ -9,12 +9,12 @@ const Welcome = () => {
         <p className="text-3xl font-semibold">Welcome To</p>
         <img className="h-36 mt-20" src={logo} alt="" />
         <div className="flex gap-16 pt-32">
-          <HashLink to={"/login"}>
+          <HashLink to={"/register"}>
             <button className=" text-2xl tracking-wider font-semibold shadow-inner shadow-red-700 hover:shadow-blue-700 duration-300 h-16 w-64 rounded-xl ">
               Sign Up
             </button>
           </HashLink>
-          <HashLink to={"/register"}>
+          <HashLink to={"/login"}>
             <button className=" text-2xl tracking-wider font-semibold shadow-inner shadow-red-700 hover:shadow-blue-700 duration-300 h-16 w-64 rounded-xl">
               Login
             </button>
