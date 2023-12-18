@@ -25,6 +25,26 @@ const Header = () => {
         <div className="flex h-full justify-center items-center">
           <HashLink to={"/"}>
             <img className="h-12" src={logo} alt="" />
+
+          </HashLink>
+        </div>
+        <div className="flex justify-center items-center gap-10">
+          <HashLink to={"/welcome"}>
+            <button className=" h-10 w-32 font-semibold outline outline-2 rounded-xl outline-black text-black">
+              {auth.currentUser ? auth.currentUser : "Log In"}
+            </button>{" "}
+          </HashLink>
+          <HashLink to={"/upload"}>
+            <button className="h-10 w-32 bg-slate-800 font-bold tracking-wider text-white  text-sm rounded-xl flex items-center justify-center gap-2 outline-black hover:bg-blue-700 duration-100">
+              Upload
+              <FolderUp />
+            </button>
+          </HashLink>
+          <HashLink to={"/mentor"}>
+            <button className="h-10 w-36 bg-slate-800 font-bold tracking-wider text-white  text-sm rounded-xl flex items-center justify-center gap-2 outline-black hover:bg-red-700 duration-100">
+              Find Mentor
+              <FolderUp />
+            </button>
           </HashLink>
         </div>
         <div className="flex justify-center items-center gap-20">

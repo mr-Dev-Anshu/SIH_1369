@@ -13,6 +13,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { loadingContext } from "./AppContext";
 import AllProjectList from "./Pages/AllProjectList";
+import MentorPage from "./components/elements/MentorPage";
+import ProjectDisplay from "./components/elements/ProjectDisplay";
 
 function App() {
 
@@ -37,6 +39,8 @@ function App() {
           <Route path="/upload" element={<UploadCard/>} />
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/project-list" element={<AllProjectList/>}/>
+          <Route path="/mentor" element={<MentorPage/>}/>
+          <Route path="/projectdisplay" element={<ProjectDisplay/>}/>
         </Routes>
         <Footer />
       </Router>

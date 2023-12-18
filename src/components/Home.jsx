@@ -5,6 +5,7 @@ import ProjectCards from "./elements/ProjectCards";
 import InfoCard from "./elements/InfoCard";
 import CardThree from "./elements/CardThree";
 import Upcoming from "./elements/Upcoming";
+import { HashLink } from "react-router-hash-link";
 
 const Home = () => {
   return (
@@ -13,7 +14,9 @@ const Home = () => {
         <div className=" p-4 flex justify-center items-center  w-[50%]">
           <div className="flex flex-col">
             <p className=" text-4xl font-serif leading-relaxed font-bold text-slate-600">
-              Empower Your Ideas, <br /> Elevate Your Projects, <br /> Seamless Uploading,<br />
+              Empower Your Ideas, <br /> Elevate Your Projects, <br /> Seamless
+              Uploading,
+              <br />
               Limitless Possibilities!
             </p>
             <p className=" text-xl tracking-wide select-none mt-4">
@@ -21,29 +24,38 @@ const Home = () => {
               <span className=" text-green-500"> projects</span> to all the
               enthusiasts out there.
             </p>
-            <input
-              className="outline outline-2 text-xl font-semibold outline-slate-200 w-full mt-10 h-12 p-5 rounded-xl"
-              placeholder="Enter your mobile number"
-              type="tel"
-              id="phone"
-              name="phone"
-              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-            />
-            <p className="pl-4 pt-1">We will send OTP for validation.</p>
-            <button className="bg-slate-800 w-full mt-10 h-12 p-5 flex justify-center items-center font-semibold rounded-xl text-white hover:bg-blue-700 duration-100">
-              Join for free
-            </button>
+            <div className="mt-16 flex flex-col w-full gap-8">
+              <div className="flex w-full gap-12">
+                <HashLink to={"/login"}>
+                  <button className="h-12 w-60 font-bold tracking-wider text-slate-600 outline outline-slate-500  text-lg rounded-xl flex items-center justify-center gap-2 hover:bg-blue-700 hover:text-white duration-100">
+                    Login
+                  </button>
+                </HashLink>
+                <HashLink to={"/register"}>
+                  <button className="h-12 w-60 font-bold tracking-wider text-slate-600  outline text-lg rounded-xl flex items-center justify-center gap-2 outline-slate-500 hover:bg-blue-700 hover:text-white duration-100">
+                    Sign Up
+                  </button>
+                </HashLink>
+              </div>
+              <div>
+                <HashLink to={"/mentor"}>
+                  <button className="h-12 w-full font-bold tracking-wider text-slate-600 outline text-lg rounded-xl flex items-center justify-center gap-2 outline-slate-500 hover:bg-blue-700 hover:text-white duration-100">
+                    Find a Mentor for your project !
+                  </button>
+                </HashLink>
+              </div>
+            </div>
           </div>
         </div>
         <div className="w-[50%] flex justify-center items-center">
           <img src={i1} alt="" />
         </div>
       </div>
-      <Search/>
-      <ProjectCards/>
-      <InfoCard/>
-      <CardThree/>
-      <Upcoming/>
+      <Search />
+      <ProjectCards />
+      <InfoCard />
+      <CardThree />
+      <Upcoming />
     </div>
   );
 };
