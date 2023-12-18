@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from "../components/assets/logo.png";
+import eye from "../components/assets/eye.png";
 import { HashLink } from "react-router-hash-link";
 import { Link } from "react-router-dom";
-import { createUserWithEmailAndPassword , onAuthStateChanged} from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
+import LoadingPage from "../Pages/LoadingPage";
 import { auth } from "../firebase-config";
-
+import { useNavigate } from "react-router-dom";
+import { loadingContext, userContext } from "../AppContext";
+import hide from "../components/assets/hide.png";
 const Login = () => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
@@ -13,18 +20,18 @@ const Login = () => {
   const [passMessage, setPassMessage] = useState(false);
   const [errror, setErrror] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [user,setUser] = useState({});
-
-  onAuthStateChanged(auth, (currentUser) => {
-    if (currentUser) {
-      setUser(currentUser);
-    }
+  const navigate = useNavigate();
+  const [user, setUser] = useState();
+  const [showPassword, setShowPassword] = useState(true);
+  const { loading, setLoading } = useContext(loadingContext);
+  <userContext.Provider value={{ user, setUser }} />;
+  useEffect(() => {
+    // console.log(user?.email);
   });
-  //  useEffect(()=>{
-  //     console.log(confirmPassword);
-  //     console.log(registerEmail);
-  //     console.log(registerPassword);
-  //  })
+
+  const ShownPassword = () => {
+    setShowPassword(!showPassword);
+  };
   const register = async () => {
     if (confirmPassword != registerPassword) {
       setPassMach(true);
@@ -47,10 +54,14 @@ const Login = () => {
         registerPassword
       );
       setErrorMessage(false);
+      navigate("/");
       console.log(user);
     } catch (error) {
       setErrror(true);
       setErrorMessage(error.message);
+    } finally {
+      setLoading(true);
+      console.log(loading);
     }
   };
   return (
@@ -68,14 +79,36 @@ const Login = () => {
                 setRegisterEmail(e.target.value);
               }}
             />
-            <input
-              className="border-none outline-none shadow-inner shadow-red-700 rounded-xl h-12 w-full p-4 "
-              type="password"
-              placeholder="Password"
-              onChange={(e) => {
-                setRegisterPassword(e.target.value);
-              }}
-            />
+            <div className="flex justify-center items-center ">
+              <input
+                className="border-none outline-none shadow-inner shadow-red-700 rounded-xl h-12 w-full p-4 "
+                type="password"
+                placeholder="Password"
+                onChange={(e) => {
+                  setRegisterPassword(e.target.value);
+                }}
+              />
+              {showPassword ? (
+                <span>
+                  <img
+                    onClick={ShownPassword}
+                    className="corsor-pointer "
+                    src={hide}
+                    alt=""
+                    srcset=""
+                  />
+                </span>
+              ) : (
+                <span>
+                  <img
+                    onClick={showPassword}
+                    className="cursor-pointer "
+                    src={eye}
+                    alt=""
+                  />
+                </span>
+              )}
+            </div>
             {passMessage ? (
               <span className="text-red-400">
                 Password Should be have atleast 6 Charaters{" "}
@@ -109,7 +142,6 @@ const Login = () => {
       <div className="text-red-500 text-xl font-bold ">
         {errror ? <div>{errorMessage}</div> : null}
       </div>
-      <div>{ `User login with ${user.email}`}</div>
       <div className="mt-5 shadow-2xl  ">
         <span className="text-xl ">Have an Account {"  "} </span>
         <Link to={"/login"}>
@@ -120,5 +152,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState , useEffect } from "react";
+import { useState  } from "react";
 import ProjectDataService from "../services/ProjectServices";
 import { storage } from "../firebase-config";
 import { ref, uploadBytes } from "firebase/storage";
@@ -18,15 +18,19 @@ export default function Upload_Project() {
     });
     setUrl(e.target.value);
   }
-  useEffect(()=>{
-          // console.log(formData.team_name);
-          console.log(formData)
-  } , [formData.mentorEmail])
+  // useEffect(()=>{
+  //         // console.log(formData.team_name);
+  //         console.log(formData)
+  // } , [formData.mentorEmail])
    const uploadImage = async (e)=>{
-        if(img1==null || img2==null || img3==null ){
+        if(img1==null || img2==null || img3==null  ){
            alert("Upload the Images !!");
            return ;
-        }else{
+        }else if (formData.team_name==null ){
+             alert("Please first Submit the form ");
+             return ; 
+        }
+        else{
           const folder = formData.team_name;
            const img1Ref = ref(storage,`${folder}/${img1.name + v4()}`);
            const img2Ref = ref(storage,`${folder}/${img2.name + v4()}`);
